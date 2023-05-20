@@ -50,9 +50,9 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="Statues.html">Statues</a></li>
-                        <li><a href="Irish-map.html">Irish Map</a></li>
+                        <li class="active"><a href="Irish-map.html">Irish Map</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
-                        <li class="active"><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
@@ -80,9 +80,9 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="Statues.html">Statues</a></li>
-                    <li><a href="Irish-map.html">Irish Map</a></li>
+                    <li class="active"><a href="Irish-map.html">Irish Map</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li class="active"><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
                 <div class="info-box">
@@ -100,8 +100,8 @@
         <!-- end hamburger-navigation -->
         <header class="page-header" style="background: url(images/slider1.jpg) center #141414;">
             <div class="container mb-5">
-                <h1>About Us</h1>
-                <p><a href="index.html">Home</a> <i class="lni lni-chevron-right"></i> About Us</p>
+                <h1>Irish Map</h1>
+                <p><a href="index.html">Home</a> <i class="lni lni-chevron-right"></i> Irish Map</p>
             </div>
         </header>
         <!-- end header breadcrumb -->
@@ -109,63 +109,14 @@
             <div class="container">
                 <div class="row no-gutters align-items-center">
                     <div class="col-12">
-
-                        <!-- end section-title -->
+                        <div id="map" class="custom-map" style="height: 50vh;"></div>
                     </div>
-                    <!-- end col-12 -->
-
-                    <div class="col-lg-6">
-                        <div class="side-hotel-box left">
-                            <div class="section-title mb-4">
-                                <h6>
-                                    Irish Statues
-                                </h6>
-                                <h2 class="mb-0">
-                                    About Us
-                                </h2>
-                            </div>
-                            <p>
-                                This project was created by Ali Salim in the 2023 Fulfillment of the Degree of Master of Science in Interactive Digital Media at Griffith College, under the supervision of Ruairi Murphy
-                            </p>
-                        </div>
-                        <!-- end side-content -->
-                    </div>
-                    <!-- end col-6 -->
-                    <div class="col-lg-6">
-                        <figure class="animated reveal-effect right-align side-image without-after"><img src="images/side-image01.jpg" alt="Image"></figure>
-                    </div>
-                    <!-- end col-6 -->
                 </div>
                 <!-- end row -->
             </div>
             <!-- end container -->
         </section>
-        <!-- end about section -->
-        <section class="content-section no-top-spacing" id="site-group">
-            <div class="container">
-                <div class="row no-gutters align-items-center">
-                    <div class="col-lg-6 d-lg-block d-none">
-                        <figure class="animated reveal-effect right-align side-image without-after"><img class="lozad" height="615" data-src="images/side-image02.jpg" alt="Image"></figure>
-                    </div><!-- end col-6 -->
 
-                    <div class="col-lg-6 py-0">
-                        <div class="py-0 py-lg-5 right side-hotel-box">
-                            <div class="section-title mb-4">
-
-                                <h2 class="mb-0">Irish Statues</h2>
-                            </div>
-                            <p>
-                                Provide brief details about some historical Irish Statues like (The Irish Famine), (James Larkin), (Markievicz Constance), (Molly Malone), and(William Smith ).
-                            </p>
-                        </div>
-                        <!-- end side-content -->
-                    </div><!-- end col-6 -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </section>
-        
         <footer class="footer">
             <div class="container">
                 <div class="row">
@@ -196,6 +147,69 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js" defer></script>
     <script src="js/preloader.js"></script>
     <script src="js/scripts-server.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL5mKxV81jHiDwUzS6VXEiVqb5hug8d6g&callback=initMap&v=weekly"
+            defer></script>
+    <script>
+        const mapElement = document.getElementById("map");
+        const locationsMarkers = [
+            {
+                id: 1,
+                lat: 53.3491167,
+                lng: -6.2643957,
+                link: "/James-Larkin.html"
+            },
+            {
+                id: 2,
+                lat: 53.3460425,
+                lng: -6.2566495,
+                link: "/Markievicz-Constance-Georgine.html"
+            },
+            {
+                id: 3,
+                lat: 53.3482717,
+                lng: -6.2596114,
+                link: "/William-Smith.html"
+
+            },
+            {
+                id: 4,
+                lat: 53.3472478,
+                lng: -6.2739254,
+                link: "/The-Irish-Famine.html"
+            },
+            {
+                id: 5,
+                lat: 53.3437409,
+                lng: -6.2609725,
+                link: "/Molly-Malone.html"
+            }
+        ];
+
+        function initMap() {
+            const centerLatLng = { lat: 53.34319314101918, lng: -6.272114794370502 };
+            const map = new google.maps.Map(mapElement, {
+                zoom: 13,
+                center: centerLatLng,
+            });
+
+            locationsMarkers.forEach((el) => {
+                const marker = new google.maps.Marker({
+                    position: {
+                        lat: el?.lat,
+                        lng: el?.lng,
+                    },
+                    map,
+                    optimized: false,
+                });
+
+                marker.addListener("click", () => {
+                    window.location.href = 'https://irishhb.github.io/IrishStatues' + el?.link;
+                });
+            });
+        }
+
+        window.initMap = initMap();
+    </script>
 </body>
 
 </html>
